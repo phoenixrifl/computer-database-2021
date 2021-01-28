@@ -21,10 +21,10 @@ public class Ui {
 
     }
 
-    public static int demandeId() {
+    public static Long demandeId() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Donnez l'id de l'ordinateur");
-        int input = sc.nextInt();
+        System.out.println("Donnez l'id");
+        long input = sc.nextInt();
         return input;
     }
 
@@ -34,6 +34,13 @@ public class Ui {
         System.out.println("Donnez un nom");
         String name = sc.nextLine();
         System.out.println("Donnez une date du format AAAA-MM-DD");
+        String introduced = sc.nextLine();
+        System.out.println("Donnez une date du format AAAA-MM-DD");
+        String discontinued = sc.nextLine();
+        System.out.println("Donnez l'id d'une compagnie");
+        String company_id = sc.nextLine();
+        computer += name + "," + introduced + "," + discontinued + "," + company_id;
+        System.out.println(computer);
         return computer;
     }
 

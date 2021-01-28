@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Company {
 	
-	private Integer id;
+	private Long id;
 	private String name;
 	
-	public Company(Integer id, String name) {
+	public Company(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -42,6 +42,6 @@ public class Company {
 		return "Company{" +
 				"id=" + id +
 				", name='" + name + '\'' +
-				'}';
+				'}'+"\n";
 	}
 }

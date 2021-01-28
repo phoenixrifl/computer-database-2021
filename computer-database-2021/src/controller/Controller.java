@@ -1,32 +1,36 @@
 package controller;
 
-import persistence.CompanyDAO;
-import persistence.ComputerDAO;
+import service.CompanyService;
+import service.ComputerService;
 import vue.Ui;
 
 public class Controller {
 
+    private ComputerService computerService = ComputerService.getInstance();
+    private CompanyService companyService = CompanyService.getInstance();
     public void action() {
+
         int choix = Ui.demande();
         switch(choix) {
             case 1:
-                Ui.afficher(new ComputerDAO().findAll());
+                Ui.afficher(computerService.findAll());
                 break;
             case 2:
-                Ui.afficher(new CompanyDAO().findAll());
+                Ui.afficher(companyService.findAll());
                 break;
             case 3:
-                int id = Ui.demandeId();
-                Ui.afficher(new ComputerDAO().find(id));
+                Long id = Ui.demandeId();
+                Ui.afficher(computerService.findOne(id));
                 break;
             case 4:
-                new ComputerDAO().create(null); //à faire
+                computerService.createDTO(Ui.demandeCreate());
                 break;
             case 5:
-                new ComputerDAO().update(null); //à faire
+                id = Ui.demandeId();
+                computerService.createComputerDtoWithId(id, Ui.demandeCreate());
                 break;
             case 6:
-                new ComputerDAO().delete(null); //à faire
+                computerService.delete(Ui.demandeId()); //à faire
                 break;
             default:
                 System.out.println();

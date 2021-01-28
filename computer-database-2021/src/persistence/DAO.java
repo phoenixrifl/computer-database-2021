@@ -1,13 +1,9 @@
 package persistence;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public abstract class DAO<T> {
 
@@ -15,27 +11,14 @@ public abstract class DAO<T> {
 
     public DAO() {
         if(this.connection == null) {
-            final Properties prop = new Properties();
-            InputStream input = null;
-            try {
-                input = new FileInputStream("db.properties");
-                prop.load(input);
-
                 try {
                     this.connection = DriverManager.getConnection(
-                            prop.getProperty("db.url"),
-                            prop.getProperty("db.username"),
-                            prop.getProperty("db.password"));
-
-
+                            "jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC",
+                            "admincdb",
+                            "qwerty1234");
                 } catch (SQLException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
-            }catch(final IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
@@ -45,7 +28,7 @@ public abstract class DAO<T> {
 
     public abstract boolean update(T obj);
 
-    public abstract T find(int id);
+    public abstract T find(Long id);
 
     public abstract ArrayList<T> findAll();
 }
